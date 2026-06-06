@@ -3,7 +3,7 @@ set -e  # Exit on any error
 
 AWS_REGION="us-east-1"
 AWS_ACCOUNT_ID="393847601074"
-REPOSITORY_NAME="test-images"
+REPOSITORY_NAME="linklet"
 IMAGE_TAG="${1:-latest}"  # Use argument or default to 'latest'
 
 ECR_URI="$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPOSITORY_NAME"
