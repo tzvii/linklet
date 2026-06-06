@@ -32,6 +32,8 @@ const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
   next();
 };
 
+app.get('/health', (req, res) => res.status(200).json({ status: 'ok' }));
+
 app.get('/:id', authMiddleware, async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
