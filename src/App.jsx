@@ -46,7 +46,7 @@ export default function URLShortener() {
     const entry = {
       id,
       original: url,
-      shortened: `micro-url.com/${id}`,
+      shortened: `linklet.cc/${id}`,
       createdAt: new Date(created).toLocaleString()
     };
 
@@ -77,7 +77,7 @@ export default function URLShortener() {
         <div className="text-center mb-12 mt-8">
           <div className="flex items-center justify-center gap-2 mb-3">
             <Link className="w-10 h-10 text-indigo-600" />
-            <h1 className="text-5xl font-bold text-gray-800">MicroURL</h1>
+            <h1 className="text-5xl font-bold text-gray-800">Linklet</h1>
           </div>
           <p className="text-gray-600">Shorten your URLs in seconds</p>
         </div>

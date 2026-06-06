@@ -10,7 +10,7 @@ app.use(
   cors({
     origin:
       process.env.ENV === 'prod'
-        ? 'https://micro-url.com'
+        ? 'https://linklet.cc'
         : 'http://localhost:3000',
     // credentials: true,
   })
@@ -18,7 +18,7 @@ app.use(
 app.use(express.static(path.join(__dirname, '../public')));
 
 const ddb: DynamoClient = new DynamoClient({
-  tableName: 'micro-urls',
+  tableName: 'urls',
   partitionKey: 'id',
 });
 
