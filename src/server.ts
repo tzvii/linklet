@@ -15,7 +15,7 @@ app.use(
     // credentials: true,
   })
 );
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 const ddb: DynamoClient = new DynamoClient({
   tableName: 'urls',
