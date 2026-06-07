@@ -2,7 +2,7 @@
   "name": "linklet",
   "version": "1.0.0",
   "scripts": {
-    "build": "tsc && parcel build src/index.html --dist-dir public",
+    "build": "tsc && parcel build src/index.html --dist-dir dist/public",
     "start": "ENV=prod node dist/server.js",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:server": "tsx watch src/server.ts",

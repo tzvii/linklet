@@ -4,12 +4,12 @@ set -e  # Exit on any error
 AWS_REGION="us-east-1"
 AWS_ACCOUNT_ID="393847601074"
 REPOSITORY_NAME="linklet"
-IMAGE_TAG="${1:-latest}"  # Use argument or default to 'latest'
+IMAGE_TAG="${1:-$(git rev-parse --short HEAD)}"
 
 ECR_URI="$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$REPOSITORY_NAME"
 
 echo "Building $REPOSITORY_NAME:$IMAGE_TAG..."
-docker build --platform linux/amd64 -t $REPOSITORY_NAME:$IMAGE_TAG .
+docker build --no-cache --platform linux/amd64 -t $REPOSITORY_NAME:$IMAGE_TAG .
 
 echo "Authenticating with ECR..."
 aws ecr get-login-password --region $AWS_REGION | \

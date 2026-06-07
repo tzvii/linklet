@@ -23,7 +23,7 @@ export default function URLShortener() {
     }
 
     try {
-        var r = await fetch(`${process.env.REACT_APP_API_URL ?? 'http://localhost:8000'}/create`, {
+        var r = await fetch('/create', {
           method: 'POST',
           headers: {
             'content-type': 'application/json',

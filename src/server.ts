@@ -8,14 +8,10 @@ const app: Express = express();
 app.use(express.json());
 app.use(
   cors({
-    origin:
-      process.env.ENV === 'prod'
-        ? 'https://linklet.cc'
-        : 'http://localhost:3000',
-    // credentials: true,
+    origin: process.env.ENV === 'prod' ? '*' : 'http://localhost:3000',
   })
 );
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 const ddb: DynamoClient = new DynamoClient({
   tableName: 'urls',

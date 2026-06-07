@@ -11,6 +11,8 @@ RUN npm ci
 
 # Copy tsconfig and source code
 COPY tsconfig.json ./
+COPY .parcelrc ./
+COPY .postcssrc ./
 COPY src ./src
 
 # Build TypeScript to JavaScript
@@ -29,7 +31,6 @@ RUN npm ci --omit=dev
 
 # Copy compiled JavaScript from builder stage
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/public ./public
 
 # Create non-root user
 RUN addgroup -g 1001 -S nodejs && \
