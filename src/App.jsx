@@ -23,7 +23,7 @@ export default function URLShortener() {
     }
 
     try {
-        var r = await fetch('/create', {
+        var r = await fetch(process.env.ENV === 'prod' ? '/create' : 'http://localhost:8000/create', {
           method: 'POST',
           headers: {
             'content-type': 'application/json',
@@ -54,7 +54,26 @@ export default function URLShortener() {
     setUrl('');
   };
 
+  // TODO: remove once https is added
   const copyToClipboard = async (text, id) => {
+  try {
+    if (navigator.clipboard) {
+      await navigator.clipboard.writeText(text);
+    } else {
+      const el = document.createElement('textarea');
+      el.value = text;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+    }
+    setCopiedId(id);
+  } catch (err) {
+    console.error('Failed to copy:', err);
+  }
+};
+
+  const _copyToClipboard = async (text, id) => {
     try {
       await navigator.clipboard.writeText(text);
       setCopiedId(id);
@@ -79,7 +98,6 @@ export default function URLShortener() {
             <Link className="w-10 h-10 text-indigo-600" />
             <h1 className="text-5xl font-bold text-gray-800">Linklet</h1>
           </div>
-          <p className="text-gray-600">Shorten your URLs in seconds</p>
         </div>
 
         {/* Input Section */}

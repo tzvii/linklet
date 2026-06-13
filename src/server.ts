@@ -2,18 +2,12 @@ import express, { Express, Request, Response, NextFunction } from 'express';
 import path from 'node:path';
 import cors from 'cors';
 import { DynamoClient } from './clients/dynamo';
-import { base62encoder } from './utils';
+import { encoder } from './utils';
 
 const app: Express = express();
 app.use(express.json());
 app.use(
-  cors({
-    origin:
-      process.env.ENV === 'prod'
-        ? 'https://linklet.cc'
-        : 'http://localhost:3000',
-    // credentials: true,
-  })
+  cors({ origin: process.env.ENV === 'prod' ? '*' : 'http://localhost:3000' })
 );
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -53,7 +47,7 @@ app.post('/create', authMiddleware, async (req: Request, res: Response) => {
   const url = req.body.url;
 
   const count = await ddb.incrementCounter();
-  const id = base62encoder(count);
+  const id = encoder(count);
 
   const item: Record<string, any> = {
     id,
