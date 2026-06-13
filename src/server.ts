@@ -43,7 +43,7 @@ app.get('/:id', authMiddleware, async (req: Request, res: Response) => {
   }
 });
 
-app.post('/create', authMiddleware, async (req: Request, res: Response) => {
+app.post('/api/create', authMiddleware, async (req: Request, res: Response) => {
   const url = req.body.url;
 
   const count = await ddb.incrementCounter();

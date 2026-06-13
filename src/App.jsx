@@ -23,11 +23,11 @@ export default function URLShortener() {
     }
 
     try {
-        var r = await fetch(process.env.ENV === 'prod' ? '/create' : 'http://localhost:8000/create', {
+        var r = await fetch('/api/create', {
           method: 'POST',
           headers: {
             'content-type': 'application/json',
-            'x-api-key': process.env.REACT_APP_API_KEY,
+            // 'x-api-key': process.env.REACT_APP_API_KEY,
           },
           body: JSON.stringify({ url }),
       });
